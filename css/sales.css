@@ -1,0 +1,88 @@
+
+.sale-info{
+    background-color:white;
+    width:600px;
+    height:500px;
+    margin:auto;
+    position:absolute;
+    top:25%;
+    left:calc(50% - 300px);
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sale-info-container, .sale-listings-container{
+    width:100%;
+}
+
+.sale-info-container{
+    flex:30%;
+}
+
+.sale-listings-container{
+    flex:70%;
+    padding-top:10px;
+}
+
+.sale-info-container .row{
+    height:50%;
+}
+
+.row div{
+    position:relative;
+}
+
+.sale-listings{
+    width:90%;
+    margin:auto;
+    overflow:auto;
+}
+
+.sale-listings-header{
+    border:solid rgb(211, 211, 211) 1px;
+    font-weight: bold;
+}
+
+.align-right{
+    text-align: right;
+}
+
+.sale-listings tr td{
+    padding:5px;
+}
+
+.close-sale-modal{
+    margin:auto;
+    position:absolute;
+    top:calc(19% + 60px);
+    left:calc(50% + 250px);
+    z-index:1550;
+}
+
+.table-container{    
+    overflow:auto;
+    border:solid rgb(187, 187, 187) 1px; 
+    width:100%; 
+    margin:auto;
+}
+
+.edit-btn{
+    position:absolute;
+    right:10px;
+    top:calc(50% - 19px);
+}
+
+.table-barcode{
+    position:relative;
+}
+
+.left-col {
+    float: left;
+    width: 50%;
+}
+ 
+.center-col {
+    float: right;
+    width: 50%;
+}

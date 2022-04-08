@@ -1,0 +1,47 @@
+
+.cancel{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:100px;
+	right:40px;
+	background-color:rgb(241, 79, 79);
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+
+}
+
+
+.change {
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:100px;
+	right:40px;
+	background-color:rgb(34, 156, 238);
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+
+}
+
+
+.confirm{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:100px;
+	right:110px;
+	background-color:#0C9;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+
+}
+
+
+
+.my-float{
+	margin-top:22px;
+}

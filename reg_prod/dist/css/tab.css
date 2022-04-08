@@ -1,0 +1,53 @@
+/** code by webdevtrick ( https://webdevtrick.com ) */
+.cart-tab {
+    display: flex;
+    flex-wrap: wrap;
+  }
+   
+  .cart-tab label {
+    order: 1;
+    display: block;
+    padding: 1rem 2rem;
+    margin-right: 0.2rem;
+    cursor: pointer;
+    background:  #333333;
+    color:white;
+    font-weight: bold;
+    transition: background ease 0.2s;
+  }
+   
+  .cart-tab .tab {
+    order: 99;
+    flex-grow: 1;
+    width: 100%;
+    display: none;
+    padding: 1rem;
+    background: #fff;
+
+  }
+   
+  .cart-tab input[type="radio"] {
+    display: none;
+  }
+   
+  .cart-tab input[type="radio"]:checked + label {
+    background: rgb(24, 52, 104);
+  }
+   
+  .cart-tab input[type="radio"]:checked + label + .tab {
+    display: block;
+  }
+   
+  @media (max-width: 45em) {
+    .cart-tab .tab,
+    .cart-tab label {
+      order: initial;
+    }
+   
+    .cart-tab label {
+      width: 100%;
+      margin-right: 0;
+      margin-top: 0.2rem;
+    }
+  }
+   

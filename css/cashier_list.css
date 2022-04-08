@@ -1,0 +1,153 @@
+#cart-list{
+    background-color:rgb(52, 52, 78);
+    padding:10px;
+    max-height: 100%;
+}
+
+#cart-content{
+    background-color:rgb(187, 187, 187);
+    padding:5px;
+    max-height: 100%;
+}
+
+.cart{
+    background-color:white;
+    width:100%;
+    height:100px;
+    margin-bottom:10px;
+    padding:10px;
+    position:relative;
+    border-radius:3px;
+}
+
+.cart > div{
+    font-size:16px;
+    font-weight:bold;
+}
+
+.cart-list-container, .cart-content-container{
+    height:100%;
+    width:100%;
+    overflow:auto;
+}
+
+.cart-date{
+    color:grey;
+    position:absolute;
+    top:calc(100% - 22px);
+    right:5px;
+    overflow:hidden;
+    font-weight:normal !important;
+}
+
+#cart-form{
+    background-color: rgb(228, 228, 228);
+    height:100%;
+    width:100%;
+}
+
+.table-container{
+    background-color:rgb(255, 255, 255);
+    height:80%;
+    max-height:80%;
+    padding:5px;
+    overflow:auto;
+}
+
+.qty_btn{
+    width:100%;
+}
+
+.cart-btn-container{
+    display:flex;
+    height:20%;
+    padding:10px;
+}
+
+.cart-btn-container div input{
+    display: inline-block;
+    overflow-wrap: break-word;
+    color:white;
+    background-color: rgb(29, 29, 58);
+    border-radius:5px;
+}
+
+.minor-btn-container{
+    width:30%;
+    height:100%;
+    display:flex;
+    flex-direction: row-reverse;
+    align-items: flex-end;
+}
+
+.major-btn-container{
+    width:20%;
+    height:100%;
+}
+
+.cart-btn{
+    padding:0px;
+    width:100%;
+    height:100%;
+}
+
+.minor-btn-container input{
+    width:50%;
+    margin:1%;
+    margin-bottom:0px;
+}
+
+.minor-cart-btn{
+    height:50%;
+}
+
+.cart-info{
+    width:50%;
+    position:relative;
+    padding-left:30px;
+    font-size:20px;
+}
+
+.num-info{
+    position:absolute;
+    right:30px;
+}
+.balance-total span{
+    font-weight:bold;
+}
+
+.modal-container{
+    z-index:5;
+    background-color:rgb(31, 21, 21,0.5);
+    height:100%;
+    width:100%;
+    position:fixed;
+    top:0px;
+    left:0px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-box{
+    width:50%;
+    height:50%;
+    position:relative;
+    top:auto;
+    bottom:auto;
+    background-color:white;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-box div{
+    width:90%;
+    margin-bottom:10px;
+}
+
+.modal-box span{
+    font-size: 20px;
+    font-weight: bold;
+}
