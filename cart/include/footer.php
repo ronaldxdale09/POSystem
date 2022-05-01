@@ -31,9 +31,9 @@
   <script>
 
   Swal.fire(
-    'Welcome!',
-    'Login Successfully',
-)
+      'Welcome!',
+      'Login Successfully',
+  )
   </script>
 
   

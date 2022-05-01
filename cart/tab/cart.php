@@ -1,6 +1,6 @@
 <div class="tabs">
    <input type="radio" name="tabs" id="tabone" checked="checked">
-   <label for="tabone"><span class="fa fa-shopping-cart"></span> Cart ID :  <?php echo $_SESSION['cart_id'] ?></label>
+   <label for="tabone"><span class="fa fa-shopping-cart" style='margin-right:10px;'></span> Cart ID:  <?php echo $_SESSION['cart_id'] ?></label>
    <div class="tab">
       <!-- START CART -->
       <?php 
@@ -28,15 +28,15 @@
                <div class="card-body">
                   <div id='cart_card_table'>
                      <dl class="dlist-align">
-                        <dt>Total price:</dt>
+                        <dt>Total price:&nbsp;</dt>
                         <dd class="text-right ml-3">₱ <?php echo  round($total['total'], 2); ?></dd>
                      </dl>
                      <dl class="dlist-align">
-                        <dt>Discount:</dt>
+                        <dt>Discount:&nbsp;</dt>
                         <dd class="text-right text-danger ml-3">- ₱ 0.00</dd>
                      </dl>
                      <dl class="dlist-align">
-                        <dt>Total:</dt>
+                        <dt>Total:&nbsp;</dt>
                         <dd class="text-right text-dark b ml-3"><strong>₱  <?php echo  round($total['total'], 2); ?></strong></dd>
                      </dl>
                   </div>
@@ -48,7 +48,7 @@
    </div>
    <input type="radio"  id="tabthree">
    <label>
-      STATUS : 
+      STATUS:&nbsp;
       <div id='status_session'><?php echo $_SESSION['status']?> </div>
    </label>
    <!--

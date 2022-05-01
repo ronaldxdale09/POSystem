@@ -83,84 +83,85 @@
                 table.buttons().container()
                     .appendTo( '#myTable_wrapper .col-md-6:eq(0)' );
             });
-                
         </script>
     </head>
     <body>
     <?php include "include/navbar.php"; ?>
-        <div class="container main-container">
-            <div class="row g-1">
-                <div class="col-md-2 store-info-container">
-                    <div class="store-info internal-div" style='font-size:1.3vw;'>  
-                        <?php echo $_SESSION['store']; ?> Inventory
-                    </div>
-                    <div class="store-info internal-div dashboard-module" style='height:150px;'> 
-                            <p class='m-0 label' style='font-size:1.3vw'>
-                                Products Listed
-                            </p>
-                            <p class="dashboard-data">
-                            <?php
-                                $store = $_SESSION['store_id'];
-                                $inventory_listings = mysqli_query($link,"SELECT * FROM inventory_listing where store=$store");
-                                $inventory_count=mysqli_num_rows($inventory_listings);
-                                echo $inventory_count;
-                            ?>
-                            </p>
-                    </div>
-                    <div class="store-info internal-div dashboard-module" style='height:150px;'> 
-                            <p class='m-0 label' style='font-size:1.3vw'>
-                            <?php
-                                $low_threshold = 100; //Quantity required to not be considered low.
-                                echo "Low Stock Items (<".$low_threshold.")";
-                            ?>
-                            </p>
-                            <p class="dashboard-data" style='color:orange'>
-                            <?php
-                                $low_inventory_listings = mysqli_query($link,"SELECT * FROM inventory_listing where store=$store AND quantity < 100");
-                                $low_inventory_count=mysqli_num_rows($low_inventory_listings);
-                                echo $low_inventory_count;
-                            ?>
-                            </p>
-                    </div>
-                </div>
-                <div class="col-md-10">
-                    <div class='internal-div'>
-                        <div class="table-container">
-                            <table class="table-proper table table-striped" id='myTable' style='width:100%;'>
-                                <thead>
-                                    <tr>
-                                        <td class="table-date theader" style='width:30%'>Product Name</td>
-                                        <td class="table-quantity theader" style='width:10%'>Quantity</td>
-                                        <td class="table-price theader" style='width:20%'>Individual Price</td>
-                                        <td class="table-total-value theader" style='width:20%'>Total Value</td>
-                                        <td class="table-barcode theader" style='width:20%'>Barcode</td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                        $store = $_SESSION['store_id'];
-                                        $sql = "SELECT * FROM inventory_listing WHERE store=$store";
-                                        $productList = $link->query($sql);
-                                        if ($productList->num_rows > 0) {
-                                            while($product_listing=mysqli_fetch_array($productList)):
-                                                $product_id = $product_listing['product'];
-                                                $product = mysqli_fetch_array(mysqli_query($link,"SELECT * FROM product WHERE id=$product_id"));
-                                    ?>
-                                    <tr <?php if($product_listing['quantity']<$low_threshold){ echo "style='color:orange;'"; } ?>>
-                                        <td class="table-name" style='width:30%'><?php echo $product['name']; ?></td>
-                                        <td class="table-quantity" id='quantity-<?php echo $product_listing['id']; ?>' style='width:10%'><?php echo $product_listing['quantity']; ?></td>
-                                        <td class="table-price" id='price-<?php echo $product_listing['id']; ?>' style='width:20%'><?php echo $product_listing['price']; ?></td>
-                                        <td class="table-total-value" id='total-price-<?php echo $product_listing['id']; ?>' style='width:20%'><?php echo $product_listing['quantity'] * $product_listing['price']; ?></td>
-                                        <td class="table-barcode" style='width:20%'><?php echo $product['barcode']; ?><button class='btn edit-btn' id="<?php echo $product_listing['id']; ?>"><i class="fa-solid fa-pen-to-square"></i></button></td>
-                                    </tr>
-                                    <?php
-                                            endwhile;
-                                        }
-                                    ?>
-                                </tbody>
-                            </table>
+        <div class="main-content">
+            <div class="container main-container">
+                <div class="row g-1">
+                    <div class="col-md-2 store-info-container">
+                        <div class="store-info internal-div" style='font-size:1.3vw;'>  
+                            <?php echo $_SESSION['store']; ?> Inventory
                         </div>
-                    </div> 
+                        <div class="store-info internal-div dashboard-module" style='height:150px;'> 
+                                <p class='m-0 label' style='font-size:1.3vw'>
+                                    Products Listed
+                                </p>
+                                <p class="dashboard-data">
+                                <?php
+                                    $store = $_SESSION['store_id'];
+                                    $inventory_listings = mysqli_query($link,"SELECT * FROM inventory_listing where store=$store");
+                                    $inventory_count=mysqli_num_rows($inventory_listings);
+                                    echo $inventory_count;
+                                ?>
+                                </p>
+                        </div>
+                        <div class="store-info internal-div dashboard-module" style='height:150px;'> 
+                                <p class='m-0 label' style='font-size:1.3vw'>
+                                <?php
+                                    $low_threshold = 100; //Quantity required to not be considered low.
+                                    echo "Low Stock Items (<".$low_threshold.")";
+                                ?>
+                                </p>
+                                <p class="dashboard-data" style='color:orange'>
+                                <?php
+                                    $low_inventory_listings = mysqli_query($link,"SELECT * FROM inventory_listing where store=$store AND quantity < 100");
+                                    $low_inventory_count=mysqli_num_rows($low_inventory_listings);
+                                    echo $low_inventory_count;
+                                ?>
+                                </p>
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+                        <div class='internal-div'>
+                            <div class="table-container">
+                                <table class="table-proper table table-striped" id='myTable' style='width:100%;'>
+                                    <thead>
+                                        <tr>
+                                            <td class="table-date theader" style='width:30%'>Product Name</td>
+                                            <td class="table-quantity theader" style='width:10%'>Quantity</td>
+                                            <td class="table-price theader" style='width:20%'>Individual Price</td>
+                                            <td class="table-total-value theader" style='width:20%'>Total Value</td>
+                                            <td class="table-barcode theader" style='width:20%'>Barcode</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                            $store = $_SESSION['store_id'];
+                                            $sql = "SELECT * FROM inventory_listing WHERE store=$store";
+                                            $productList = $link->query($sql);
+                                            if ($productList->num_rows > 0) {
+                                                while($product_listing=mysqli_fetch_array($productList)):
+                                                    $product_id = $product_listing['product'];
+                                                    $product = mysqli_fetch_array(mysqli_query($link,"SELECT * FROM product WHERE id=$product_id"));
+                                        ?>
+                                        <tr <?php if($product_listing['quantity']<$low_threshold){ echo "style='color:orange;'"; } ?>>
+                                            <td class="table-name" style='width:30%'><?php echo $product['name']; ?></td>
+                                            <td class="table-quantity" id='quantity-<?php echo $product_listing['id']; ?>' style='width:10%'><?php echo $product_listing['quantity']; ?></td>
+                                            <td class="table-price" id='price-<?php echo $product_listing['id']; ?>' style='width:20%'><?php echo $product_listing['price']; ?></td>
+                                            <td class="table-total-value" id='total-price-<?php echo $product_listing['id']; ?>' style='width:20%'><?php echo $product_listing['quantity'] * $product_listing['price']; ?></td>
+                                            <td class="table-barcode" style='width:20%'><?php echo $product['barcode']; ?><button class='btn edit-btn' id="<?php echo $product_listing['id']; ?>"><i class="fa-solid fa-pen-to-square"></i></button></td>
+                                        </tr>
+                                        <?php
+                                                endwhile;
+                                            }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div> 
+                    </div>
                 </div>
             </div>
         </div>

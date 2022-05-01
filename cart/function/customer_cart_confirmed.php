@@ -35,7 +35,7 @@ $sql  = "SELECT * from cart_listing where cart='$cart_id'";
                 <tr>  
                 <td scope="row" hidden>'.$arr["id"].'</td>
                 <td scope="row" hidden>'.$arr["product"].'</td>
-                <td scope="row">'.$rowProd['name'].'</td>
+                <td scope="row" class="prodname">'.$rowProd['name'].'</td>
                 <td>
                 <td scope="row" hidden>'.$arr["quantity"].'</td>
                 </td>

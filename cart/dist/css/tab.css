@@ -6,7 +6,9 @@
    
   .tabs label {
     order: 1;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 1rem 2rem;
     margin-right: 0.2rem;
     cursor: pointer;
@@ -23,7 +25,7 @@
     display: none;
     padding: 1rem;
     background: #fff;
-
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 7px;
   }
    
   .tabs input[type="radio"] {
@@ -50,4 +52,7 @@
       margin-top: 0.2rem;
     }
   }
-   
+
+.prodname{
+  font-size:18px;
+}

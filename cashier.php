@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<?php include "function/db_connect.php"; ?>
+<?php 
+    include "function/db_connect.php"; 
+    include "function/authenticate.php";
+?>
 <html>
     <head>
         <?php
@@ -159,9 +162,9 @@
     </head>
     <body>
         <?php include "include/navbar.php"; ?>
-        <div style="height:100%; width:100%; position:absolute;">
+        <div class='main-content' style='position:relative; height:100%;'>
             <div class="container home-section h-100" style="max-width:95%;">
-                <div class="col-12 pt-5 pb-2 h-100">
+                <div class="col-12 pt-1 pb-2 h-100">
                     <div class="row container-fluid bg-light p-2 mb-5 h-100">
                         <div id="cart-list" class="cart-list col-md-3 h-100">
                             <div id="cart-list-container" class="cart-list-container">
