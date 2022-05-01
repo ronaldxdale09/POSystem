@@ -45,7 +45,7 @@
                    <tr>  
                    <td scope="row" hidden>'.$arr["id"].'</td>
                    <td scope="row" hidden>'.$arr["product"].'</td>
-                   <td scope="row">'.$rowProd['name'].'</td>
+                   <td scope="row" class="prodname">'.$rowProd['name'].'</td>
                    <td scope="row">'.$arr['quantity'].'</td>
                       <div class="price-wrap"> <var class="price">₱ '.$arr['total_amount'].'</var> <small class="text-muted">₱ '.$rowInventory['price'].' each </small> </div>
                    </td>

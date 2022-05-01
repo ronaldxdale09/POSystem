@@ -174,61 +174,63 @@
     </head>
     <body>
     <?php include "include/navbar.php"; ?>
-        <div class="container main-container">
-            <div class="row g-1">
-                <div class="col-md-2 store-info-container">
-                    <div class="store-info internal-div" style='font-size:1.3vw;'>  
-                        <?php echo $_SESSION['store']; ?> Users
-                    </div>
-                    <div class="store-info internal-div dashboard-module" style='height:150px;'> 
-                            <p class='m-0 label' style='font-size:1.3vw'>
-                                Users Registered
-                            </p>
-                            <p class="dashboard-data">
-                            <?php
-                                $store = $_SESSION['store_id'];
-                                $user_listings = mysqli_query($link,"SELECT * FROM user where store=$store");
-                                $user_count=mysqli_num_rows($user_listings);
-                                echo $user_count;
-                            ?>
-                            </p>
-                    </div>
-                    <div class="store-info internal-div" style='height:auto; font-size:initial;'>  
-                        <button class='btn btn-success add-user' style='height:100%; width:100%;'><i class="fa-solid fa-user-plus"></i> Add New User</button>
-                    </div>
-                </div>
-                <div class="col-md-10">
-                    <div class='internal-div'>
-                        <div class="table-container">
-                            <table class="table-proper table table-striped" id='myTable' style='width:100%;'>
-                                <thead>
-                                    <tr>
-                                        <td class="theader" style='width:55%'>User Mail</td>
-                                        <td class="theader" style='width:15%; text-align:center;'>User Type</td>
-                                        <td class="theader" style='width:30%'>Actions</td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                        $store = $_SESSION['store_id'];
-                                        $sql = "SELECT * FROM user WHERE store=$store";
-                                        $userList = $link->query($sql);
-                                        if ($userList->num_rows > 0) {
-                                            while($user=mysqli_fetch_array($userList)):
-                                    ?>
-                                    <tr>
-                                        <td style='width:55%' id='user-<?php echo $user['id']; ?>'><?php echo $user['username']; ?></td>
-                                        <td style='width:15%; text-align:center;'><?php echo $user['type']; ?></td>
-                                        <td style='width:30%'><button class='btn btn-primary edit-user' id="<?php echo $user['id']; ?>"><i class="fa-solid fa-pen-to-square"></i> Edit</button><button style='margin-left:10px;' class='btn btn-danger delete-user' id="<?php echo $user['id']; ?>"><i class="fa-solid fa-user-minus"></i> Delete</button></td>
-                                    </tr>
-                                    <?php
-                                            endwhile;
-                                        }
-                                    ?>
-                                </tbody>
-                            </table>
+        <div class="main-content">
+            <div class="container main-container">
+                <div class="row g-1">
+                    <div class="col-md-2 store-info-container">
+                        <div class="store-info internal-div" style='font-size:1.3vw;'>  
+                            <?php echo $_SESSION['store']; ?> Users
                         </div>
-                    </div> 
+                        <div class="store-info internal-div dashboard-module" style='height:150px;'> 
+                                <p class='m-0 label' style='font-size:1.3vw'>
+                                    Users Registered
+                                </p>
+                                <p class="dashboard-data">
+                                <?php
+                                    $store = $_SESSION['store_id'];
+                                    $user_listings = mysqli_query($link,"SELECT * FROM user where store=$store");
+                                    $user_count=mysqli_num_rows($user_listings);
+                                    echo $user_count;
+                                ?>
+                                </p>
+                        </div>
+                        <div class="store-info internal-div" style='height:auto; font-size:initial;'>  
+                            <button class='btn btn-success add-user' style='height:100%; width:100%;'><i class="fa-solid fa-user-plus"></i> Add New User</button>
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+                        <div class='internal-div'>
+                            <div class="table-container">
+                                <table class="table-proper table table-striped" id='myTable' style='width:100%;'>
+                                    <thead>
+                                        <tr>
+                                            <td class="theader" style='width:55%'>User Mail</td>
+                                            <td class="theader" style='width:15%; text-align:center;'>User Type</td>
+                                            <td class="theader" style='width:30%'>Actions</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                            $store = $_SESSION['store_id'];
+                                            $sql = "SELECT * FROM user WHERE store=$store";
+                                            $userList = $link->query($sql);
+                                            if ($userList->num_rows > 0) {
+                                                while($user=mysqli_fetch_array($userList)):
+                                        ?>
+                                        <tr>
+                                            <td style='width:55%' id='user-<?php echo $user['id']; ?>'><?php echo $user['username']; ?></td>
+                                            <td style='width:15%; text-align:center;'><?php echo $user['type']; ?></td>
+                                            <td style='width:30%'><button class='btn btn-primary edit-user' id="<?php echo $user['id']; ?>"><i class="fa-solid fa-pen-to-square"></i> Edit</button><button style='margin-left:10px;' class='btn btn-danger delete-user' id="<?php echo $user['id']; ?>"><i class="fa-solid fa-user-minus"></i> Delete</button></td>
+                                        </tr>
+                                        <?php
+                                                endwhile;
+                                            }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div> 
+                    </div>
                 </div>
             </div>
         </div>

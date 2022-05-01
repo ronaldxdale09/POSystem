@@ -46,7 +46,7 @@
                <p class="tagline">
                   <?php echo $_SESSION['store_address'];?>
                </p>
-               <a href='staff_index.php' class="btn btn-full scrollto"  >Management</a>
+               <a href='staff_index.php' class="btn btn-full scrollto"  style='margin-bottom:10px;'>Management</a><br>
                <a href='store.php'  class="btn btn-danger "  >Cart Mode</a>
             </div>
     </div>

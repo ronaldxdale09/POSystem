@@ -70,61 +70,63 @@
     </head>
     <body>
     <?php include "include/navbar.php"; ?>
-        <div class="container main-container">
-            <div class="row g-1">
-                <div class="col-md-3">
-                    <div class="store-info internal-div" style='font-size:1.3vw;'>  
-                        <?php echo $_SESSION['store']; ?> Sales
-                    </div>
-                    <div class="store-info internal-div dashboard-module" style='height:400px;'> 
-                        <canvas id="pie" style="width:100%;max-width:100%; height:100%;"></canvas>
-                    </div>
-                </div>
-                <div class="col-md-9">
-                    <div class='internal-div'>
-                        <div class="table-container">
-                            <table id='myTable' class="table-proper table table-striped" style='width:100%;'>
-                                <thead>
-                                    <tr>
-                                        <td class="table-date theader">Transaction Date</td>
-                                        <td class="table-total theader">Sales Total</td>
-                                        <td class="table-status theader">Transaction Status</td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                        $sql = "SELECT * FROM cart WHERE status='TRANSACTED'";
-                                        $salesList = $link->query($sql);
-                                        if ($salesList->num_rows > 0) {
-                                            while($sale=mysqli_fetch_array($salesList)):
-                                    ?>
-                                    <tr id="<?php echo $sale['id']; ?>" class='sale'>
-                                        <td class="table-date">
-                                            <?php
-                                                echo $sale['date_transacted']." ";
-                                                $datetimesent = new DateTime($sale['date_transacted']);
-                                                //echo $datetimesent->format('D, M j, \'y, h:i A');  
-                                            ?>
-                                        </td>
-                                        <td class="table-total">
-                                            <?php
-                                                echo "PHP ".$sale['final_total'];
-                                            ?>
-                                        </td>
-                                        <td class="table-status">
-                                            <?php
-                                                echo $sale['status'];
-                                            ?>
-                                        </td>
-                                    </tr>
-                                    <?php
-                                            endwhile;
-                                        }
-                                    ?>
-                                </tbody>
-                            </table>
+        <div class="main-content">
+            <div class="container main-container">
+                <div class="row g-1">
+                    <div class="col-md-3">
+                        <div class="store-info internal-div" style='font-size:1.3vw;'>  
+                            <?php echo $_SESSION['store']; ?> Sales
                         </div>
-                    </div> 
+                        <div class="store-info internal-div dashboard-module" style='height:400px;'> 
+                            <canvas id="pie" style="width:100%;max-width:100%; height:100%;"></canvas>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class='internal-div'>
+                            <div class="table-container">
+                                <table id='myTable' class="table-proper table table-striped" style='width:100%;'>
+                                    <thead>
+                                        <tr>
+                                            <td class="table-date theader">Transaction Date</td>
+                                            <td class="table-total theader">Sales Total</td>
+                                            <td class="table-status theader">Transaction Status</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                            $sql = "SELECT * FROM cart WHERE status='TRANSACTED'";
+                                            $salesList = $link->query($sql);
+                                            if ($salesList->num_rows > 0) {
+                                                while($sale=mysqli_fetch_array($salesList)):
+                                        ?>
+                                        <tr id="<?php echo $sale['id']; ?>" class='sale'>
+                                            <td class="table-date">
+                                                <?php
+                                                    echo $sale['date_transacted']." ";
+                                                    $datetimesent = new DateTime($sale['date_transacted']);
+                                                    //echo $datetimesent->format('D, M j, \'y, h:i A');  
+                                                ?>
+                                            </td>
+                                            <td class="table-total">
+                                                <?php
+                                                    echo "PHP ".$sale['final_total'];
+                                                ?>
+                                            </td>
+                                            <td class="table-status">
+                                                <?php
+                                                    echo $sale['status'];
+                                                ?>
+                                            </td>
+                                        </tr>
+                                        <?php
+                                                endwhile;
+                                            }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div> 
+                    </div>
                 </div>
             </div>
         </div>

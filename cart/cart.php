@@ -1,11 +1,11 @@
 <?php 
     include('include/header.php');
     ?>
-<body>
+<body style='background-color:#e9f2f9;'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- ============================================================== -->
-    <div class="page-wrapper">
-    <div class="container-fluid">
+    <div class="page-wrapper" style='background-color:#e9f2f9;'>
+    <div class="container-fluid" style='width:70%;'>
         <!-- ============================================================== -->
     
        
