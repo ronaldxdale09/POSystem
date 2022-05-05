@@ -60,6 +60,8 @@
         
         setInterval(function(){
            checkIfTransacted();
+           fetch_data();
+
         },2000);
         
     </script>

@@ -20,6 +20,8 @@ $sql  = "SELECT * from cart_listing where cart='$cart_id'";
         </thead>';  
  if(mysqli_num_rows($result) > 0)  
  {  
+     $cashier_status ='';
+     $color ='';
       while($arr = mysqli_fetch_array($result))  
       {  
         $prod = $arr['product'];
@@ -30,18 +32,30 @@ $sql  = "SELECT * from cart_listing where cart='$cart_id'";
         $getPrice = mysqli_query($con, "SELECT * FROM inventory_listing WHERE product='$prod'");
         $rowInventory = mysqli_fetch_array($getPrice);
 
+      
+
+        if ($arr['cashier_scan'] == 0) {
+          $cashier_status ='PENDING';
+          $color= 'warning';
+        }
+        elseif ($arr['cashier_scan'] == 1) {
+          $cashier_status ='CONFIRMED';
+          $color= 'success';
+        }
+        elseif ($arr['cashier_scan'] == 2) {
+          $cashier_status ='QUANITY NOT MATCH';
+          $color= 'success';
+        }
 
            $output .= '  
                 <tr>  
                 <td scope="row" hidden>'.$arr["id"].'</td>
-                <td scope="row" hidden>'.$arr["product"].'</td>
                 <td scope="row" class="prodname">'.$rowProd['name'].'</td>
-                <td>
-                <td scope="row" hidden>'.$arr["quantity"].'</td>
-                </td>
+                <td scope="row" >'.$arr["quantity"].'</td>
                 <td>
                    <div class="price-wrap"> <var class="price">₱ '.$arr['total_amount'].'</var> <small class="text-muted">₱ '.$rowInventory['price'].' each </small> </div>
-                </td>          
+                </td>
+                <td scope="row" >  <button class="btn btn-'.$color.' btn-sm">'.$cashier_status.'</button></td>          
                 </tr>  
            ';  
       } 
