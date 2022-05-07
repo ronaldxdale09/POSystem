@@ -84,6 +84,7 @@
                     .appendTo( '#myTable_wrapper .col-md-6:eq(0)' );
             });
         </script>
+        <title>Inventory | Qcut</title>
     </head>
     <body>
     <?php include "include/navbar.php"; ?>
@@ -127,7 +128,7 @@
                         <div class='internal-div'>
                             <div class="table-container">
                                 <table class="table-proper table table-striped" id='myTable' style='width:100%;'>
-                                    <thead>
+                                    <thead class='table-dark'>
                                         <tr>
                                             <td class="table-date theader" style='width:30%'>Product Name</td>
                                             <td class="table-quantity theader" style='width:10%'>Quantity</td>
@@ -166,8 +167,7 @@
             </div>
         </div>
         <div class="modal" id='quantity-modal'>
-        <button class='btn close-sale-modal'><i class='fa fa-close'></i></button>
-            <div class="sale-info" id="sale-info" style='display:flex; flex-direction:column; justify-content:center;'>
+            <div class="sale-info" id="sale-info" style='display:flex; flex-direction:column; justify-content:center; height:370px; width:350px;'>
                 <div style='margin-top:10px; font-size:25px;'>
                     <div id='product-name' style='font-weight:bold;'>
                         Product Name
@@ -186,7 +186,8 @@
                     <input name='price' id='edit-price' type="number" step="0.01">
                 </div>
                 <div style='margin-top:10px; font-size:25px;'>
-                    <input type="button" value='Edit' class='edit-submit' id=''>
+                    <button class='btn btn-secondary close-sale-modal' style='position:static;'>Return</button>
+                    <button type="button" value='Edit' class='edit-submit btn btn-primary' id=''><i class="fa-regular fa-pen-to-square"></i> Edit</button>
                 </div>
             </div>
         </div>

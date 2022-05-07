@@ -2,20 +2,18 @@
 <?php 
     include "function/db_connect.php"; 
     include "function/authenticate.php";
-
-
 ?>
 <html>
 
 <head>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <?php
             include "include/bootstrap.php";
             include "include/jquery.php";
             include "modal_cashier.php";
         ?>
     <link rel='stylesheet' href='css/cashier_list.css'>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+    <title>Cashier | Qcut</title>
     <script>
     var barcode = '';
     var interval;
@@ -102,7 +100,7 @@
             loadcart_table(cart);
 
         });
-        //[dale] load cart
+        // [DALE] load cart
         function loadcart_table(cart) {
             $.ajax({
                 url: "function/load_cart.php",
@@ -227,7 +225,7 @@
 
 
         $(document).on('click', '.finalize_cart', function() {
-            //[dale] check if all item on cart has been verified
+            // [DALE] check if all item on cart has been verified
 
             var cart = document.getElementById('selected_cart_id').value;
             $.ajax({
@@ -334,7 +332,7 @@
     <div class='main-content' style='position:relative; height:100%;'>
         <div class="container home-section h-100" style="max-width:95%;">
             <div class="col-12 pt-1 pb-2 h-100">
-                <div class="row container-fluid bg-light p-2 mb-5 h-100">
+                <div class="row container-fluid bg-light p-2 h-100">
                     <div id="cart-list" class="cart-list col-md-3 h-100">
                         <div id="cart-list-container" class="cart-list-container">
                             <!-- Cart List Outputted Here -->
@@ -351,32 +349,36 @@
     </div>
 
     <div id="price-modal" class="modal-container hidden">
-        <div id="cart-modal-content" class="modal-box cart-modal-content">
-            <div style="flex:80%; padding-top:20%;">
-                <div>
+        <div id="cart-modal-content" class="modal-box cart-modal-content" style='width:500px; height:330px;'>
+            <div style="flex:80%; padding-top:30px;">
+                <h3>Complete Transaction</h3>
+                <hr>
+                <div class='enlarge-txt'>
                     <span>Balance Due:</span>
                     <span class='num-info'>PHP <span id='cart_due'></span></span>
                 </div>
-                <div>
-                    <span>Enter Amount Paid:</span>
-                    <span class='num-info'><input type='number' name='amount_paid'></span>
+                <div class='enlarge-txt'>
+                    <span>Amount Paid:</span>
+                    <span class='num-info'><input type='number' name='amount_paid' class='text-end' id='amount-number-input'></span>
                 </div>
             </div>
             <div style="flex:20%; display:flex; flex-direction:column;">
                 <span style="margin:auto; height:100%;">
-                    <input type='button' class='submit_cancel' value='Cancel'>
-                    <input type='button' class='submit_cart' id='' value='Confirm Transaction'>
+                    <button type='button' class='submit_cancel btn btn-danger' value='Cancel' style='font-size:30px; padding:20px 40px;'><i class='fa-regular fa-rectangle-xmark'></i></button>
+                    <button type='button' class='submit_cart btn btn-success' id='' value='Confirm Transaction' style='font-size:30px; padding:20px 40px;'><i class='fa-solid fa-cart-shopping' title='Complete Transaction'></i> <i class='fa-regular fa-circle-check'></i></button>
                 </span>
             </div>
         </div>
-        <div id="change-content" class="modal-box cart-modal-content hidden">
-            <div style="flex:80%; padding-top:20%;">
+        <div id="change-content" class="modal-box cart-modal-content hidden" style='width:400px; height:200px;'>
+            <div style="flex:80%; padding-top:30px;">
+                <h3 style='margin:auto;'>Transaction Completed!</h3>
+                <hr>
                 <span>Change Due:</span>
                 <span class='num-info'>PHP <span id='cart_change'></span></span>
             </div>
             <div style="flex:20%; display:flex; flex-direction:column;">
                 <span style="margin:auto; height:100%;">
-                    <input type='button' class='submit_cancel' value='Close'>
+                    <button type='button' class='submit_cancel btn btn-success' value='Close' style='width:50px; paddinng:10px 20px;'><i class="fa-solid fa-check-double"></i> Return</button>
                 </span>
             </div>
         </div>

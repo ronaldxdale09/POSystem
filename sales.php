@@ -8,11 +8,11 @@
         <?php
             include "include/bootstrap.php";
             include "include/jquery.php";
+            include "include/datatables_buttons_css.php";
         ?>
         <link rel='stylesheet' href='css/index.css'>
         <link rel='stylesheet' href='css/sales.css'>        
         <?php include "include/datatables_buttons_js.php"; ?>
-        <?php include "include/datatables_buttons_css.php"; ?>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script>
             $(document).ready(function(){
@@ -67,6 +67,7 @@
                     .appendTo( '#myTable_wrapper .col-md-6:eq(0)' );
             });
         </script>
+        <title>Sales | Qcut</title>
     </head>
     <body>
     <?php include "include/navbar.php"; ?>
@@ -85,11 +86,11 @@
                         <div class='internal-div'>
                             <div class="table-container">
                                 <table id='myTable' class="table-proper table table-striped" style='width:100%;'>
-                                    <thead>
+                                    <thead class='table-dark'>
                                         <tr>
-                                            <td class="table-date theader">Transaction Date</td>
+                                            <td class="table-date theader text-center">Transaction Date</td>
                                             <td class="table-total theader">Sales Total</td>
-                                            <td class="table-status theader">Transaction Status</td>
+                                            <td class="table-status theader text-center">Transaction Status</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -100,19 +101,19 @@
                                                 while($sale=mysqli_fetch_array($salesList)):
                                         ?>
                                         <tr id="<?php echo $sale['id']; ?>" class='sale'>
-                                            <td class="table-date">
+                                            <td class="table-date text-center">
                                                 <?php
                                                     echo $sale['date_transacted']." ";
                                                     $datetimesent = new DateTime($sale['date_transacted']);
                                                     //echo $datetimesent->format('D, M j, \'y, h:i A');  
                                                 ?>
                                             </td>
-                                            <td class="table-total">
+                                            <td class="table-total" style='padding-right:10px;'>
                                                 <?php
                                                     echo "PHP ".$sale['final_total'];
                                                 ?>
                                             </td>
-                                            <td class="table-status">
+                                            <td class="table-status text-center">
                                                 <?php
                                                     echo $sale['status'];
                                                 ?>

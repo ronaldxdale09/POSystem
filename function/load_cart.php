@@ -16,17 +16,20 @@
             <table class='list-table'>
                 <thead>
                     <tr>
-                        <th class='list-label'>
+                        <th class='list-label text-center bg-light' style='width:40%;'>
                             Product
                         </th>
-                        <th class='list-label'>
-                            Quantity
+                        <th class='list-label text-center bg-light' style='width:10%;'>
+                            Qty
                         </th>
-                        <th class='list-label'>
+                        <th class='list-label text-center bg-light' style='width:20%;'>
                             Each
                         </th>
-                        <th class='list-label'>
+                        <th class='list-label text-center bg-light' style='width:20%;'>
                             Total
+                        </th>
+                        <th class='list-label text-center bg-light' style='width:10%;'>
+                            Actions
                         </th>
                     </tr>
                 </thead>";
@@ -50,7 +53,7 @@
             $barcode = $item['barcode'];
 
             if ($item_listing['cashier_scan'] == 0){
-                $color='#D8D8D8';
+                $color='#ede8e8';
             }
             elseif ($item_listing['cashier_scan'] == 1){
                 $color='#66FF99';
@@ -65,33 +68,35 @@
                 display: table-cell;
                 vertical-align: inherit;
                 background:$color;
+                padding:5px;
+                font-size:18px;
               }
             </style>
                 <tr>
-                <td hidden id='item_barcode'>
-                $barcode
+                    <td hidden id='item_barcode'>
+                        $barcode
                     </td>
-                    <td>
+                    <td style='width:40%;'>
                         $item_name
                         <input type='hidden' name='inventory_amount_$item_listing_id' value='$inventory_quantity'>
                     </td>
-                    <td>
-                    <div id='amount_$item_listing_id'>
-                        $item_listing_quantity
-                    </div>
-                    <input type='hidden' id='input_amount_$item_listing_id' name='amount_$item_listing_id' value='$item_listing_quantity'>
+                    <td class='text-center' style='width:10%;'>
+                        <div id='amount_$item_listing_id'>
+                            $item_listing_quantity
+                        </div>
+                        <input type='hidden' id='input_amount_$item_listing_id' name='amount_$item_listing_id' value='$item_listing_quantity'>
                     </td>
-                    <td>
+                    <td class='text-center' style='width:20%;'>
                         $inventory_price
                     </td>
-                    <td id='price_$item_listing_id' name='$inventory_price'>
+                    <td class='text-center' style='width:20%;' id='price_$item_listing_id' name='$inventory_price'>
                         $price
                     </td>
-                    <td>
-                        <input type='button' value='-' id='$item_listing_id' class='qty_btn sub_qty'>
-                    </td>
-                    <td>
-                        <input type='button' value='+' id='$item_listing_id' class='qty_btn add_qty'>
+                    <td style='width:10%;'>
+                        <span style='display:flex;'>
+                            <button type='button' value='-' id='$item_listing_id' class='qty_btn sub_qty btn btn-primary m-1'><i class='fa-solid fa-minus'></i></button>
+                            <button type='button' value='+' id='$item_listing_id' class='qty_btn add_qty btn btn-primary m-1'><i class='fa-solid fa-plus'></i></button>
+                        </span>
                     </td>
                 </tr>";
             $final_total = $final_total + $price;
@@ -117,12 +122,11 @@
                 </div>
             </div>
             <div class='minor-btn-container'>
-                <input type='button' id='cancel_cart' class='cancel_cart minor-cart-btn' value='Cancel Confirmation'>
-                <input type='button' id='close_cart' class='close_cart minor-cart-btn'value='Close Cart' >
-
+                <button type='button' id='cancel_cart' class='cancel_cart minor-cart-btn btn btn-primary' value='Cancel Confirmation' title='Cancel Confirmation'><i class='fa-regular fa-rectangle-xmark'></i></button>
+                <button type='button' id='close_cart' class='close_cart minor-cart-btn btn btn-danger' value='Close Cart' title='Close Cart'><i class='fa-regular fa-trash-can'></i></button>
             </div>
             <div class='major-btn-container'>
-                <input type='button' id='$cart_id' class='finalize_cart cart-btn' value='Confirm Transaction'>
+                <button type='button' id='$cart_id' class='finalize_cart cart-btn btn btn-success' value='Confirm Transaction'><i class='fa-solid fa-cart-shopping' title='Complete Transaction'></i> <i class='fa-regular fa-circle-check'></i></button>
             </div>
         </div>
     </form>

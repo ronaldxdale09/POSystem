@@ -48,7 +48,7 @@ echo "
             </div>
         </div>
         <div class='sale-listings-container'>
-            <table class='sale-listings sale-listings-header'>
+            <table class='sale-listings sale-listings-header table table-dark'>
                 <tr>
                     <td style='width:40%;'>
                         Product Name
@@ -65,7 +65,7 @@ echo "
                 </tr>
             </table>
             <div class='table-container' style='height:290px;'>
-                <table class='sale-listings' id='sale-listings' style='width:100%;'>";
+                <table class='sale-listings table table-striped' id='sale-listings' style='width:100%;'>";
 $cart_listing = mysqli_query($link,"SELECT * FROM cart_listing WHERE cart = $cart_id");
 while($item_listing=mysqli_fetch_array($cart_listing)):
     $item_id = $item_listing['product'];

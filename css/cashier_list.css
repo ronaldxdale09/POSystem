@@ -5,7 +5,7 @@
 }
 
 #cart-content {
-    background-color: rgb(187, 187, 187);
+    background-color: #9cc4e4;
     padding: 5px;
     max-height: 100%;
 }
@@ -62,22 +62,21 @@
 .cart-btn-container {
     display: flex;
     height: 20%;
-    padding: 10px;
+    padding: 5px;
 }
 
-.cart-btn-container div input {
+.cart-btn-container div .finalize_cart {
     display: inline-block;
     overflow-wrap: break-word;
-    color: white;
-    background-color: rgb(29, 29, 58);
     border-radius: 5px;
+    font-size: 30px;
 }
 
 .minor-btn-container {
-    width: 30%;
+    width: 15%;
     height: 100%;
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: column;
     align-items: flex-end;
 }
 
@@ -92,10 +91,11 @@
     height: 100%;
 }
 
-.minor-btn-container input {
-    width: 50%;
+.minor-btn-container button{
+    width: 100%;
     margin: 1%;
     margin-bottom: 0px;
+    font-size: 25px;
 }
 
 .minor-cart-btn {
@@ -103,10 +103,10 @@
 }
 
 .cart-info {
-    width: 50%;
+    width: 65%;
     position: relative;
-    padding-left: 30px;
-    font-size: 20px;
+    padding: 10px 30px 10px 30px;
+    font-size: 25px;
 }
 
 .num-info {
@@ -142,6 +142,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    border-radius: 4px;;
 }
 
 .modal-box div {
@@ -152,4 +153,23 @@
 .modal-box span {
     font-size: 20px;
     font-weight: bold;
+}
+
+.enlarge-txt span{
+    font-size:21px;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#amount-number-input{
+    padding-right:5px;
+    border:solid rgba(0, 0, 0, 0.356) 1px;
 }

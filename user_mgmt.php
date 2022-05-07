@@ -81,7 +81,6 @@
                         data:{user_id:id},
                         dataType:"html",
                         success:function(data) {
-                            alert(data);
                             location.reload();
                             closeAddModal();
                         },
@@ -202,7 +201,7 @@
                         <div class='internal-div'>
                             <div class="table-container">
                                 <table class="table-proper table table-striped" id='myTable' style='width:100%;'>
-                                    <thead>
+                                    <thead class='table-dark'>
                                         <tr>
                                             <td class="theader" style='width:55%'>User Mail</td>
                                             <td class="theader" style='width:15%; text-align:center;'>User Type</td>
@@ -235,8 +234,7 @@
             </div>
         </div>
         <div class="modal" id='quantity-modal'>
-            <button class='btn close-sale-modal'><i class='fa fa-close'></i></button>
-            <div class="sale-info" id="sale-info" style='display:flex; flex-direction:column; justify-content:center;'>
+            <div class="sale-info" id="sale-info" style='display:flex; flex-direction:column; justify-content:center; height:450px; width:420px;'>
                 <div style='margin-top:10px; font-size:25px;'>
                     <div id='product-name' style='font-weight:bold;'>
                         Edit User Details
@@ -252,22 +250,22 @@
                     <div>
                         Password
                     </div>
-                    <input id='edit-password' name='password' type="password">
+                    <input id='edit-password' name='password' type="text">
                 </div>
                 <div style='margin-top:10px; font-size:25px;'>
                     <div>
                         Confirm Password
                     </div>
-                    <input id='edit-confirm-password' name='confirm_password' type="password">
+                    <input id='edit-confirm-password' name='confirm_password' type="text">
                 </div>
                 <div style='margin-top:10px; font-size:25px;'>
-                    <input type="button" value='Edit' class='edit-submit' id=''>
+                    <button class='btn close-sale-modal btn btn-secondary' style='position:static;'>Return</button>
+                    <button type="button" value='Edit' class='edit-submit btn btn-primary' id=''><i class="fa-regular fa-pen-to-square"></i> Edit</button>
                 </div>
             </div>
         </div>
         <div class="modal" id='add-modal'>
-            <button class='btn close-sale-modal'><i class='fa fa-close'></i></button>
-            <div class="sale-info" id="sale-info" style='display:flex; flex-direction:column; justify-content:center;'>
+            <div class="sale-info" id="sale-info" style='display:flex; flex-direction:column; justify-content:center; height:500px; width:430px;'>
                 <div style='margin-top:10px; font-size:25px;'>
                     <div id='product-name' style='font-weight:bold;'>
                         Add User Details
@@ -291,15 +289,18 @@
                     </div>
                     <input id='add-confirm-password' name='confirm_password' type="password">
                 </div>
-                <div style='margin-top:10px; font-size:25px;'>
+                <div class='' style='margin-top:10px; font-size:25px; width:80%;'>
+                    <div>
                         User Type
-                    <select id='add-type' name='confirm_password' type="password">
+                    </div>
+                    <select id='add-type' name='user-type' style='width:100%;'>
                         <option value="user">User</option>
                         <option value="admin">Admin</option>
                     </select>
                 </div>
                 <div style='margin-top:10px; font-size:25px;'>
-                    <input type="button" value='Add' class='add-submit' id=''>
+                    <button class='btn close-sale-modal btn btn-secondary' style='position:static;'>Return</button>
+                    <button type="button" value='Add' class='add-submit btn btn-success' id=''><i class="fa-solid fa-plus"></i> Add</button>
                 </div>
             </div>
         </div>

@@ -15,7 +15,7 @@
             <i class='fa-solid fa-cash-register'></i> <span class='nav-text'>Cashier</span>
         </a>
         <a class='nav-link' href='sales.php'>
-            <i class='fa-solid fa-cart-shopping'></i> <span class='nav-text'>Sales</span>
+            <i class='fa-solid fa-coins'></i> <span class='nav-text'>Sales</span>
         </a>
         <a class='nav-link' href='inventory.php'>
             <i class='fa-solid fa-boxes-stacked'></i> <span class='nav-text'>Inventory</span>
@@ -30,6 +30,9 @@
     echo "
         <a class='nav-link' href='reg_prod/index.php'>
             <i class='fa-solid fa-boxes-packing'></i> <span class='nav-text'>Register Product</span>
+        </a>
+        <a class='nav-link' href='store.php'>
+            <i class='fa-solid fa-cart-shopping'></i> <span class='nav-text'>Cart Mode</span>
         </a>
         <div class='logout-container'>
             <span class='nav-text'>".$_SESSION['username']."</span>

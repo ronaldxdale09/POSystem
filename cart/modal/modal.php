@@ -108,9 +108,6 @@
    <div class="modal-content">
       <div class="modal-header">
          <h5 class="modal-title" id="exampleModalLabel">CONFIRM TRANSACTION</h5>
-         <button type="button" class="btn" data-dismiss="modal" aria-label="Close">
-         <span aria-hidden="true">&times;</span>
-         </button>
       </div>
       <div class="modal-body">
          <form action="function/confirm_cart.php" method="POST">
@@ -135,9 +132,8 @@
       </div>
             </div>
             <div class="modal-footer">
-            <button type="submit" name='submit' class="btn btn-success text-white">Submit</button>
                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              
+               <button type="submit" name='submit' class="btn btn-success text-white">Submit</button>
          </form>
          </div>
       </div>
@@ -151,20 +147,16 @@
 <div class="modal-dialog">
    <div class="modal-content">
       <div class="modal-header">
-         <h5 class="modal-title" id="exampleModalLabel">POS</h5>
-         <button type="button" class="btn" data-dismiss="modal" aria-label="Close">
-         <span aria-hidden="true">&times;</span>
-         </button>
+         <h5 class="modal-title" id="exampleModalLabel">Mobile Scanner</h5>
       </div>
       <div class="modal-body">
          <form action="function/cancel_cart.php" method="POST">
             <!-- ... START -->
-            <h5 class="modal-title" id="exampleModalLabel">CANCEL TRANSACTION</h5>
+            <h5 class="modal-title text-center" id="exampleModalLabel" style='font-size:23px; font-weight:bold;'>CANCEL TRANSACTION</h5>
             </div>
             <div class="modal-footer">
-            <button type="submit" name='submit' class="btn btn-success text-white">Submit</button>
-               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              
+               <button type="button" class="btn btn-secondary" data-dismiss="modal">Return</button>
+               <button type="submit" name='submit' class="btn btn-danger text-white">Confirm</button>
          </form>
          </div>
       </div>
@@ -179,15 +171,12 @@
 <div class="modal-dialog">
    <div class="modal-content">
       <div class="modal-header">
-         <h5 class="modal-title" id="exampleModalLabel">POS</h5>
-         <button type="button" class="btn" data-dismiss="modal" aria-label="Close">
-         <span aria-hidden="true">&times;</span>
-         </button>
+         <h5 class="modal-title" id="exampleModalLabel">Mobile Scanner</h5>
       </div>
       <div class="modal-body">
          <form action="function/edit_cart.php" method="POST">
             <!-- ... START -->
-            <h5 class="modal-title" id="exampleModalLabel">EDIT TRANSACTION</h5>
+            <h5 class="modal-title" id="exampleModalLabel" style='font-size:23px; font-weight:bold;'>EDIT TRANSACTION</h5>
             </div>
             <div class="modal-footer">
             <button type="submit" name='submit' class="btn btn-success text-white">Submit</button>

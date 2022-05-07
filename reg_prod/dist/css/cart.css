@@ -78,7 +78,8 @@ a {
 
 .price {
     font-weight: 600;
-    color: #212529
+    color: #212529;
+    font-size:20px;
 }
 
 .btn.btn-out {
