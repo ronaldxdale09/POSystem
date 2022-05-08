@@ -122,8 +122,8 @@
                 </div>
             </div>
             <div class='minor-btn-container'>
-                <button type='button' id='cancel_cart' class='cancel_cart minor-cart-btn btn btn-primary' value='Cancel Confirmation' title='Cancel Confirmation'><i class='fa-regular fa-rectangle-xmark'></i></button>
-                <button type='button' id='close_cart' class='close_cart minor-cart-btn btn btn-danger' value='Close Cart' title='Close Cart'><i class='fa-regular fa-trash-can'></i></button>
+                <button type='button' id='' class='cancel_cart minor-cart-btn btn btn-primary' value='Cancel Confirmation' title='Cancel Confirmation'><i class='fa-regular fa-rectangle-xmark'></i></button>
+                <button type='button' id='' class='close_cart minor-cart-btn btn btn-danger' value='Close Cart' title='Close Cart'><i class='fa-regular fa-trash-can'></i></button>
             </div>
             <div class='major-btn-container'>
                 <button type='button' id='$cart_id' class='finalize_cart cart-btn btn btn-success' value='Confirm Transaction'><i class='fa-solid fa-cart-shopping' title='Complete Transaction'></i> <i class='fa-regular fa-circle-check'></i></button>

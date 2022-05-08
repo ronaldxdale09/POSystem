@@ -217,8 +217,9 @@
                 datasets: [{
                     label:'Sales',
                     data: sales, //Y-axis data 
-                    backgroundColor: '#5e440f',
-                    borderColor: 'black',
+                    backgroundColor: '#f26c4f',
+                    borderColor: '#f26c4f',
+                    tension: 0.3,
                     fill: false, //Fills the curve under the line with the babckground color. It's true by default
                 }]
             },

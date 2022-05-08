@@ -171,3 +171,7 @@ table tr{
 #myTable{
     padding:10px;
 }
+
+.active{
+    background-color:#a3e5ff !important;
+}

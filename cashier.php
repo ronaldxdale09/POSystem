@@ -97,8 +97,9 @@
         //Load Cart when Clicking cart from the list
         $(document).on('click', '.cart', function() {
             var cart = $(this).attr('id');
+            $(this).addClass('active').siblings().removeClass('active');
+            $("#selected-cart").val(cart);
             loadcart_table(cart);
-
         });
         // [DALE] load cart
         function loadcart_table(cart) {
@@ -190,13 +191,11 @@
 
         //Completes Transaction for Cart
         $(document).on('click', '.submit_cart', function() {
-
-
             // button function
             var cart =  document.getElementById('selected_cart_id').value;
             var total_amount = parseFloat($("#price_total").text()); //Total
             var paid_amount = $("input[name=amount_paid]").val(); //Paid
-            //!! ADD CART TOTAL AND CHANGE !!
+            //!! ADD CART TOTAL AND CHANGE !! [Done]
             $.ajax({
                 url: "function/cart_transact.php",
                 method: "POST",
@@ -222,11 +221,96 @@
         });
 
 
+        //Opens Cancel Cart Confirmation Modal
+        $(document).on('click', '.cancel_cart', function() {
+            var cart =  document.getElementById('selected_cart_id').value;
+            $(".cancel_cart").attr('id', cart);
+            $("#cancel-modal").removeClass('hidden');
+            $("#cancel-content").removeClass('hidden');
+        });
 
+        //Cancels Cart Confirmation
+        $(document).on('click', '.confirm_cancel_cart', function() {
+            var cart =  document.getElementById('selected_cart_id').value;
+            $.ajax({
+                url: "function/cart_cancel.php",
+                method: "POST",
+                data: {
+                    cart_id: cart,
+                },
+                dataType: "html",
+                success: function() {
+                    $("#cart-form").remove();
+                    closeCancelModal();
+                    loadCarts();
+                },
+                error: function() {
+                    alert("Something went wrong");
+                }
+            });
+        });
+
+        //Opens Close Cart Confirmation Modal
+        $(document).on('click', '.close_cart', function() {
+            var cart =  document.getElementById('selected_cart_id').value;
+            $(".close_cart").attr('id', cart);
+            $("#cancel-modal").removeClass('hidden');
+            $("#close-content").removeClass('hidden');
+        });
+
+        //Cancels Cart Confirmation
+        $(document).on('click', '.confirm_cancel_cart', function() {
+            var cart =  document.getElementById('selected_cart_id').value;
+            $.ajax({
+                url: "function/cart_cancel.php",
+                method: "POST",
+                data: {
+                    cart_id: cart,
+                },
+                dataType: "html",
+                success: function() {
+                    $("#cart-form").remove();
+                    closeCancelModal();
+                    loadCarts();
+                },
+                error: function() {
+                    alert("Something went wrong");
+                }
+            });
+        });
+
+        //Closes Cart
+        $(document).on('click', '.confirm_close_cart', function() {
+            var cart =  document.getElementById('selected_cart_id').value;
+            $.ajax({
+                url: "function/cart_close.php",
+                method: "POST",
+                data: {
+                    cart_id: cart,
+                },
+                dataType: "html",
+                success: function() {
+                    $("#cart-form").remove();
+                    closeCancelModal();
+                    loadCarts();
+                },
+                error: function() {
+                    alert("Something went wrong");
+                }
+            });
+        });
+
+
+        //Opens Close Cart Confirmation Modal
+        $(document).on('click', '.close_cart', function() {
+            var cart =  document.getElementById('selected_cart_id').value;
+            $(".cancel_cart").attr('id', cart);
+            $("#cancel-modal").removeClass('hidden');
+            $("#close-content").removeClass('hidden');
+        });
 
         $(document).on('click', '.finalize_cart', function() {
             // [DALE] check if all item on cart has been verified
-
             var cart = document.getElementById('selected_cart_id').value;
             $.ajax({
                 url: "function/checkAllConfirmedButton.php",
@@ -256,18 +340,23 @@
 
                 }
             });
-
-
         });
 
         $(document).on('click', '.submit_cancel', function() {
             closeModal();
         });
 
+        $(document).on('click', '.cancel_cancel', function() {
+            closeCancelModal();
+        });
+
         $('.modal-container').on('click', function(e) {
             if (e.target !== this)
                 return;
-            closeModal();
+            if (e.id == 'price-modal')
+                closeModal();
+            else
+                closeCancelModal();
         });
 
 
@@ -292,14 +381,17 @@
                         'Transaction Was Successful',
                         'success'
                     );
-
-
-
                 }
-
             );
         });
         //    end
+
+        //Adding Selected Class to Cashier Tabs
+        $('.selectable').click(function() {
+            alert('Hello World');
+            $(this).addClass('active').siblings().removeClass('active');
+            console.log('Selected!');
+        });
     });
 
     function closeModal() {
@@ -312,7 +404,11 @@
 
     //Function to Load "CONFIRMED" Carts from DB
     function loadCarts() {
-        $("#cart-list-container").load("function/load_cart_list.php");
+        var selected_id = document.getElementById('selected-cart').value;
+        var data = {
+            selected: selected_id,
+        };
+        $("#cart-list-container").load("function/load_cart_list.php", data);
     };
 
     //Function for Modal
@@ -320,6 +416,20 @@
         $("#price-modal").removeClass('hidden');
         $("#cart_due").text(amount);
         $(".submit_cart").attr('id', cart);
+    };
+
+    function openCancelModal(cart){
+        $(".cancel_cart").attr('id', cart);
+        $("#cancel-modal").removeClass('hidden');
+        alert(cart);
+    };
+
+    
+    function closeCancelModal(cart){
+        $(".cancel_cart").attr('id', cart);
+        $("#cancel-modal").addClass('hidden');
+        $("#cancel-content").addClass('hidden');
+        $("#close-content").addClass('hidden');
     };
     </script>
 
@@ -329,6 +439,7 @@
 
 <body>
     <?php include "include/navbar.php"; ?>
+    <input type='hidden' id='selected-cart' value=''>
     <div class='main-content' style='position:relative; height:100%;'>
         <div class="container home-section h-100" style="max-width:95%;">
             <div class="col-12 pt-1 pb-2 h-100">
@@ -347,7 +458,6 @@
             </div>
         </div>
     </div>
-
     <div id="price-modal" class="modal-container hidden">
         <div id="cart-modal-content" class="modal-box cart-modal-content" style='width:500px; height:330px;'>
             <div style="flex:80%; padding-top:30px;">
@@ -378,7 +488,35 @@
             </div>
             <div style="flex:20%; display:flex; flex-direction:column;">
                 <span style="margin:auto; height:100%;">
-                    <button type='button' class='submit_cancel btn btn-success' value='Close' style='width:50px; paddinng:10px 20px;'><i class="fa-solid fa-check-double"></i> Return</button>
+                    <button type='button' class='submit_cancel btn btn-success' value='Close' style='width:50px; padding:10px 20px;'><i class="fa-solid fa-check-double"></i> Return</button>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div id="cancel-modal" class='modal-container hidden'>
+        <div id="cancel-content" class="modal-box cart-modal-content hidden" style='width:400px; height:300px;'>
+            <div style="flex:80%; padding-top:30px;">
+                <h3 class='text-center' style='margin:auto;'>Are you sure you want to CANCEL this cart?</h3>
+                <h4 class='text-center' style='margin:auto;'>The Customer will be able to continue shopping</h4>
+                <hr>
+            </div>
+            <div style="flex:20%; display:flex; flex-direction:column;">
+                <span style="margin:auto; height:100%;">
+                    <button type='button' class='cancel_cancel btn btn-secondary' style='padding:10px 20px;'>Return</button>
+                    <button type='button' class='confirm_cancel_cart btn btn-primary' id='' style='padding:10px 20px;'><i class="fa-regular fa-rectangle-xmark"></i> Cancel</button>
+                </span>
+            </div>
+        </div>
+        <div id="close-content" class="modal-box cart-modal-content hidden" style='width:400px; height:300px;'>
+            <div style="flex:80%; padding-top:30px;">
+                <h3 class='text-center' style='margin:auto;'>Are you sure you want to CLOSE this cart?</h3>
+                <h4 class='text-center text-danger' style='margin:auto;'>The Customer will  NOT be able to continue shopping</h4>
+                <hr>
+            </div>
+            <div style="flex:20%; display:flex; flex-direction:column;">
+                <span style="margin:auto; height:100%;">
+                    <button type='button' class='cancel_cancel btn btn-secondary' style='padding:10px 20px;'>Return</button>
+                    <button type='button' class='confirm_close_cart btn btn-danger' id='' style='padding:10px 20px;'><i class="fa-regular fa-trash-can"></i> Close</button>
                 </span>
             </div>
         </div>
