@@ -12,7 +12,7 @@
     if($count == 0){
         echo "	<script type='text/javascript'>
                     alert('Session Expired');
-                    window.location='/posystem/login.php';
+                    window.location='../index.php';
                 </script>";
     }
 ?>

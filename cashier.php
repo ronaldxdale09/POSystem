@@ -67,21 +67,33 @@
                     var total = data[4];
                     var cashier_status = data[5];
                     var prod_id = data[6];
+                    var price = data[7];
 
                     $('#cart_id').val(cart);
                     $('#inputed_barcode').val(bar);
                     $('#scanned_name').val(name);
                     $('#scanned_quantity').val(data[3]);
                     $('#scanned_price').val(total);
-
                     $('#prod_id').val(prod_id);
-
-
+                    $('#each_price').val(price);
                     $('#verify_cart').modal('show');
+
                 }
             }
         });
     }
+
+    // [DALE] CHANGE VALUE OF TOTAL PRICE BASE ON QUANTITY INSIDE MODAL
+    $(function() {
+        $("#scanned_quantity").keyup(function() {
+
+            $("#scanned_price").val(((+$("#scanned_quantity").val().replace(/,/g, '')  * +$("#each_price").val()
+                .replace(/,/g, ''))).toLocaleString());
+ 
+        });
+    });
+
+
     </script>
 
 
@@ -192,7 +204,7 @@
         //Completes Transaction for Cart
         $(document).on('click', '.submit_cart', function() {
             // button function
-            var cart =  document.getElementById('selected_cart_id').value;
+            var cart = document.getElementById('selected_cart_id').value;
             var total_amount = parseFloat($("#price_total").text()); //Total
             var paid_amount = $("input[name=amount_paid]").val(); //Paid
             //!! ADD CART TOTAL AND CHANGE !! [Done]
@@ -223,7 +235,7 @@
 
         //Opens Cancel Cart Confirmation Modal
         $(document).on('click', '.cancel_cart', function() {
-            var cart =  document.getElementById('selected_cart_id').value;
+            var cart = document.getElementById('selected_cart_id').value;
             $(".cancel_cart").attr('id', cart);
             $("#cancel-modal").removeClass('hidden');
             $("#cancel-content").removeClass('hidden');
@@ -231,7 +243,7 @@
 
         //Cancels Cart Confirmation
         $(document).on('click', '.confirm_cancel_cart', function() {
-            var cart =  document.getElementById('selected_cart_id').value;
+            var cart = document.getElementById('selected_cart_id').value;
             $.ajax({
                 url: "function/cart_cancel.php",
                 method: "POST",
@@ -243,6 +255,14 @@
                     $("#cart-form").remove();
                     closeCancelModal();
                     loadCarts();
+
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'CART',
+                        text: 'Cart cancelled sucessfully',
+
+                    });
+
                 },
                 error: function() {
                     alert("Something went wrong");
@@ -252,7 +272,7 @@
 
         //Opens Close Cart Confirmation Modal
         $(document).on('click', '.close_cart', function() {
-            var cart =  document.getElementById('selected_cart_id').value;
+            var cart = document.getElementById('selected_cart_id').value;
             $(".close_cart").attr('id', cart);
             $("#cancel-modal").removeClass('hidden');
             $("#close-content").removeClass('hidden');
@@ -260,7 +280,7 @@
 
         //Cancels Cart Confirmation
         $(document).on('click', '.confirm_cancel_cart', function() {
-            var cart =  document.getElementById('selected_cart_id').value;
+            var cart = document.getElementById('selected_cart_id').value;
             $.ajax({
                 url: "function/cart_cancel.php",
                 method: "POST",
@@ -281,7 +301,7 @@
 
         //Closes Cart
         $(document).on('click', '.confirm_close_cart', function() {
-            var cart =  document.getElementById('selected_cart_id').value;
+            var cart = document.getElementById('selected_cart_id').value;
             $.ajax({
                 url: "function/cart_close.php",
                 method: "POST",
@@ -303,7 +323,7 @@
 
         //Opens Close Cart Confirmation Modal
         $(document).on('click', '.close_cart', function() {
-            var cart =  document.getElementById('selected_cart_id').value;
+            var cart = document.getElementById('selected_cart_id').value;
             $(".cancel_cart").attr('id', cart);
             $("#cancel-modal").removeClass('hidden');
             $("#close-content").removeClass('hidden');
@@ -418,14 +438,14 @@
         $(".submit_cart").attr('id', cart);
     };
 
-    function openCancelModal(cart){
+    function openCancelModal(cart) {
         $(".cancel_cart").attr('id', cart);
         $("#cancel-modal").removeClass('hidden');
         alert(cart);
     };
 
-    
-    function closeCancelModal(cart){
+
+    function closeCancelModal(cart) {
         $(".cancel_cart").attr('id', cart);
         $("#cancel-modal").addClass('hidden');
         $("#cancel-content").addClass('hidden');
@@ -469,13 +489,18 @@
                 </div>
                 <div class='enlarge-txt'>
                     <span>Amount Paid:</span>
-                    <span class='num-info'><input type='number' name='amount_paid' class='text-end' id='amount-number-input'></span>
+                    <span class='num-info'><input type='number' name='amount_paid' class='text-end'
+                            id='amount-number-input'></span>
                 </div>
             </div>
             <div style="flex:20%; display:flex; flex-direction:column;">
                 <span style="margin:auto; height:100%;">
-                    <button type='button' class='submit_cancel btn btn-danger' value='Cancel' style='font-size:30px; padding:20px 40px;'><i class='fa-regular fa-rectangle-xmark'></i></button>
-                    <button type='button' class='submit_cart btn btn-success' id='' value='Confirm Transaction' style='font-size:30px; padding:20px 40px;'><i class='fa-solid fa-cart-shopping' title='Complete Transaction'></i> <i class='fa-regular fa-circle-check'></i></button>
+                    <button type='button' class='submit_cancel btn btn-danger' value='Cancel'
+                        style='font-size:30px; padding:20px 40px;'><i
+                            class='fa-regular fa-rectangle-xmark'></i></button>
+                    <button type='button' class='submit_cart btn btn-success' id='' value='Confirm Transaction'
+                        style='font-size:30px; padding:20px 40px;'><i class='fa-solid fa-cart-shopping'
+                            title='Complete Transaction'></i> <i class='fa-regular fa-circle-check'></i></button>
                 </span>
             </div>
         </div>
@@ -488,7 +513,8 @@
             </div>
             <div style="flex:20%; display:flex; flex-direction:column;">
                 <span style="margin:auto; height:100%;">
-                    <button type='button' class='submit_cancel btn btn-success' value='Close' style='width:50px; padding:10px 20px;'><i class="fa-solid fa-check-double"></i> Return</button>
+                    <button type='button' class='submit_cancel btn btn-success' value='Close'
+                        style='width:50px; padding:10px 20px;'><i class="fa-solid fa-check-double"></i> Return</button>
                 </span>
             </div>
         </div>
@@ -502,21 +528,26 @@
             </div>
             <div style="flex:20%; display:flex; flex-direction:column;">
                 <span style="margin:auto; height:100%;">
-                    <button type='button' class='cancel_cancel btn btn-secondary' style='padding:10px 20px;'>Return</button>
-                    <button type='button' class='confirm_cancel_cart btn btn-primary' id='' style='padding:10px 20px;'><i class="fa-regular fa-rectangle-xmark"></i> Cancel</button>
+                    <button type='button' class='cancel_cancel btn btn-secondary'
+                        style='padding:10px 20px;'>Return</button>
+                    <button type='button' class='confirm_cancel_cart btn btn-primary' id=''
+                        style='padding:10px 20px;'><i class="fa-regular fa-rectangle-xmark"></i> Cancel</button>
                 </span>
             </div>
         </div>
         <div id="close-content" class="modal-box cart-modal-content hidden" style='width:400px; height:300px;'>
             <div style="flex:80%; padding-top:30px;">
                 <h3 class='text-center' style='margin:auto;'>Are you sure you want to CLOSE this cart?</h3>
-                <h4 class='text-center text-danger' style='margin:auto;'>The Customer will  NOT be able to continue shopping</h4>
+                <h4 class='text-center text-danger' style='margin:auto;'>The Customer will NOT be able to continue
+                    shopping</h4>
                 <hr>
             </div>
             <div style="flex:20%; display:flex; flex-direction:column;">
                 <span style="margin:auto; height:100%;">
-                    <button type='button' class='cancel_cancel btn btn-secondary' style='padding:10px 20px;'>Return</button>
-                    <button type='button' class='confirm_close_cart btn btn-danger' id='' style='padding:10px 20px;'><i class="fa-regular fa-trash-can"></i> Close</button>
+                    <button type='button' class='cancel_cancel btn btn-secondary'
+                        style='padding:10px 20px;'>Return</button>
+                    <button type='button' class='confirm_close_cart btn btn-danger' id='' style='padding:10px 20px;'><i
+                            class="fa-regular fa-trash-can"></i> Close</button>
                 </span>
             </div>
         </div>

@@ -5,7 +5,6 @@ $cart_id = $_POST['cart_id'];
 $carts = mysqli_query($link,"SELECT * FROM cart WHERE id=$cart_id");
 $cart=mysqli_fetch_array($carts);
 $cart_id = $cart['id'];
-$device_id = $cart['device_id'];
 $date_created = $cart['date_created'];
 $date_transacted = $cart['date_transacted'];
 $status = $cart['status'];
@@ -21,7 +20,6 @@ echo "
                 </div>
                 <div class='col-md-2'>
                     <p class='info-label'>User ID</p>
-                    <p class='info-value'>$device_id</p>
                 </div>
                 <div class='col-md-4'>
                     <p class='info-label'>Date Created</p>

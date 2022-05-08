@@ -4,7 +4,7 @@ include('db.php');
     $cart_id  = $_POST['cart_id'];
     $prod_id  = $_POST['prod_id'];
     $quantity = $_POST['scanned_quantity'];
-    $price    = $_POST['scanned_price'];
+    $new_total    = $_POST['scanned_price'];
     
     
     
@@ -22,7 +22,7 @@ include('db.php');
     
     
     
-    $update  = "UPDATE  cart_listing set cashier_scan ='$status', quantity='$quantity' WHERE cart='$cart_id' and product ='$prod_id' ";
+    $update  = "UPDATE  cart_listing set cashier_scan ='$status', quantity='$quantity',total_amount='$new_total' WHERE cart='$cart_id' and product ='$prod_id' ";
   
     if(mysqli_query($con, $update)){
                                    

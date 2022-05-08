@@ -10,8 +10,9 @@
    //  $prod = mysqli_fetch_array($getProdID);
    //  $prod_id = $prod['id'];
     
-    $checkCartList = mysqli_query($con, "SELECT * FROM cart_listing 
-    LEFT JOIN product ON cart_listing.product = product.id 
+    $checkCartList = mysqli_query($con, "SELECT cart_listing.*,product.*,inventory.id,inventory.price 
+    FROM cart_listing LEFT JOIN product ON cart_listing.product = product.id 
+    LEFT JOIN inventory_listing inventory ON cart_listing.product = inventory.product 
     WHERE product.barcode='$barcode' AND cart_listing.cart = '$cart_id' ");
     $arr = mysqli_fetch_array($checkCartList);
 
@@ -25,6 +26,7 @@
    $data[4] = $arr['total_amount'];
    $data[5] = $arr['cashier_scan'];
    $data[6] = $arr['product'];
+   $data[7] = $arr['price'];
 
 
 

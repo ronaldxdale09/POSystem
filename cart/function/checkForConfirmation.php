@@ -11,7 +11,13 @@
          $_SESSION['status'] = 'TRANSACTED';
         
     }
+    elseif ($arrCheck['status'] == 'OPEN'){
+   $_SESSION['status'] = 'OPEN';  
+   }
 
+   elseif ($arrCheck['status'] == 'CANCEL'){
+      $_SESSION['status'] = 'CANCEL';  
+      }
     echo $_SESSION['status'];
    
   

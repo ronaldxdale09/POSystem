@@ -51,7 +51,13 @@
                     if ( status == 'TRANSACTED'){
                        $('#transacted_modal').modal('show');
                     }
-                   
+                    else if (status=='OPEN') {
+                         $('#cashier_cancel').modal('show');
+                    }
+
+                    else if (status=='CANCEL') {
+                         $('#cashier_close').modal('show');
+                    }
                     
                   }  
              });  
